@@ -9,11 +9,11 @@
 #include "ast.h"
 #include "objc_class.h"
 
-objc_class *ast::lookup_class(const char *class_name)
+objc_class *ast::lookup_class(const std::string &class_name)
 {
     objc_class *c = _classes[class_name];
     if (!c) {
-        c = new objc_class;
+        c = new objc_class(class_name);
         _classes[class_name] = c;
     }
     

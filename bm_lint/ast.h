@@ -18,7 +18,7 @@ typedef std::map<std::string, objc_class *> class_map;
 class ast
 {
 public:
-    objc_class *lookup_class(const char *);
+    objc_class *lookup_class(const std::string &class_name);
 
     const class_map &objc_classes() const;
     

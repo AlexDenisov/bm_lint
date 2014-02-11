@@ -7,3 +7,12 @@
 //
 
 #include "objc_class.h"
+
+objc_class::objc_class(const std::string &name)
+: _name(name)
+{}
+
+const std::string &objc_class::name() const
+{
+    return _name;
+}

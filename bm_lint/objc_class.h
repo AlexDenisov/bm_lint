@@ -8,7 +8,13 @@
 
 #pragma once
 
+#include <string>
+
 class objc_class
 {
 public:
+    explicit objc_class(const std::string &name);
+    const std::string &name() const;
+private:
+    std::string _name;
 };
