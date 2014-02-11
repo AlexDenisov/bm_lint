@@ -6,13 +6,11 @@
 //  Copyright (c) 2014 Railsware. All rights reserved.
 //
 
-#include <iostream>
+#include "ZingBDD.h"
 
 int main(int argc, const char * argv[])
 {
-
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    ZingBDD::StreamReporter reporter(std::cout);
+    return ZingBDD::Runner::getInstance().run(reporter);
 }
 
