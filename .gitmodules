@@ -1,0 +1,3 @@
+[submodule "third_party/ZingBDD"]
+	path = third_party/ZingBDD
+	url = https://github.com/dmeehan1968/ZingBDD.git
