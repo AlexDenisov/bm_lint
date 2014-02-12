@@ -12,10 +12,11 @@
 
 objc_class *ast::lookup_class(const std::string &class_name)
 {
-    objc_class *c = _classes[class_name];
+    objc_class *c = _class_map[class_name];
     if (!c) {
         c = new objc_class(class_name);
-        _classes[class_name] = c;
+        _class_map[class_name] = c;
+        _classes.push_back(c);
     }
     
     return c;
@@ -23,16 +24,22 @@ objc_class *ast::lookup_class(const std::string &class_name)
 
 objc_protocol *ast::lookup_protocol(const std::string &protocol_name)
 {
-    objc_protocol *protocol = _protocols[protocol_name];
+    objc_protocol *protocol = _protocol_map[protocol_name];
     if (!protocol) {
         protocol = new objc_protocol(protocol_name);
-        _protocols[protocol_name] = protocol;
+        _protocol_map[protocol_name] = protocol;
+        _protocols.push_back(protocol);
     }
     
     return protocol;
 }
 
-const class_map &ast::objc_classes() const
+const class_list &ast::objc_classes() const
 {
     return _classes;
+}
+
+const protocol_list &ast::objc_protocols() const
+{
+    return _protocols;
 }

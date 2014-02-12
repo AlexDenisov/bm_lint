@@ -29,6 +29,10 @@ describe(parser_tests, {
         expect(sut->objc_classes()).should.haveCountOf(2);
     });
     
+    it("should parse all protocols,", {
+        expect(sut->objc_protocols()).should.haveCountOf(2);
+    });
+    
     context("test class", {
         objc_class *test_class;
         
