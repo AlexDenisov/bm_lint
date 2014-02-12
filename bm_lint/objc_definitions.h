@@ -21,4 +21,5 @@ typedef std::map<std::string, objc_protocol *> protocol_map;
 typedef std::map<std::string, objc_property *> property_map;
 
 typedef std::vector<objc_protocol *> protocol_list;
+typedef std::vector<objc_property *> property_list;
 typedef std::vector<objc_class *> class_list;

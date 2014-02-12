@@ -13,6 +13,8 @@
 class ast
 {
 public:
+    ~ast();
+    
     objc_class *lookup_class(const std::string &class_name);
     objc_protocol *lookup_protocol(const std::string &protocol_name);
     

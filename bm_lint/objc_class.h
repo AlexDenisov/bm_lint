@@ -14,6 +14,7 @@ class objc_class
 {
 public:
     explicit objc_class(const std::string &name);
+    ~objc_class();
     
     const std::string &name() const;
     
@@ -23,8 +24,8 @@ public:
     
     // properties
     objc_property *lookup_property(const std::string &property_name);
-    const property_map &properties() const;
-    const property_map &dynamic_properties() const;
+    const property_list &properties() const;
+    const property_list &dynamic_properties() const;
     
     // protocols
     const protocol_list &protocols() const;
@@ -32,6 +33,7 @@ public:
 private:
     std::string _name;
     objc_class *_superclass;
-    property_map _properties;
+    property_map _property_map;
+    property_list _properties;
     protocol_list _protocols;
 };

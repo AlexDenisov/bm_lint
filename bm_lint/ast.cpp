@@ -10,6 +10,28 @@
 #include "objc_class.h"
 #include "objc_protocol.h"
 
+ast::~ast()
+{
+    auto cit = _classes.begin();
+    while (cit != _classes.end()) {
+        objc_class *c = *cit;
+        cit++;
+        delete c;
+    }
+    
+    auto pit = _protocols.begin();
+    while (pit != _protocols.end()) {
+        objc_protocol *p = *pit;
+        pit++;
+        delete p;
+    }
+    
+    _classes.clear();
+    _protocols.clear();
+    _class_map.clear();
+    _protocol_map.clear();
+}
+
 objc_class *ast::lookup_class(const std::string &class_name)
 {
     objc_class *c = _class_map[class_name];
