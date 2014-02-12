@@ -40,8 +40,30 @@ describe(parser_tests, {
             expect(test_class).should.beNonNil();
         });
         
-        it("should parse name", {
+        it("should have name", {
             expect(test_class->name()).should.equal("test");
+        });
+        
+        it("should have superclass", {
+            expect(test_class->superclass()).shouldNot.beNil();
+        });
+        
+        it("should have right superclass", {
+#warning waiting for base class parsing implementation
+            expect(false).should.beTrue();
+            // expect(test_class->superclass()->name()).should.equal("root");
+        });
+        
+        it("should have properties", {
+            expect(test_class->properties()).should.haveCountOf(3);
+        });
+        
+        it("should have dynamic properties", {
+            expect(test_class->dynamic_properties()).should.haveCountOf(1);
+        });
+        
+        it("should have protocols", {
+            expect(test_class->protocols()).should.haveCountOf(2);
         });
         
     });

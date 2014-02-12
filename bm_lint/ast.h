@@ -8,20 +8,18 @@
 
 #pragma once
 
-#include <map>
-#include <string>
-
-class objc_class;
-
-typedef std::map<std::string, objc_class *> class_map;
+#include "objc_definitions.h"
 
 class ast
 {
 public:
     objc_class *lookup_class(const std::string &class_name);
-
+    objc_protocol *lookup_protocol(const std::string &protocol_name);
+    
     const class_map &objc_classes() const;
+    const protocol_map &objc_protocols() const;
     
 private:
     class_map _classes;
+    protocol_map _protocols;
 };

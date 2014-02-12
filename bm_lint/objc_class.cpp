@@ -7,6 +7,8 @@
 //
 
 #include "objc_class.h"
+#include "objc_property.h"
+#include "objc_protocol.h"
 
 objc_class::objc_class(const std::string &name)
 : _name(name)
@@ -15,4 +17,45 @@ objc_class::objc_class(const std::string &name)
 const std::string &objc_class::name() const
 {
     return _name;
+}
+
+void objc_class::set_superclass(objc_class *superclass)
+{
+    _superclass = superclass;
+}
+
+objc_class *objc_class::superclass() const
+{
+    return _superclass;
+}
+
+objc_property *objc_class::lookup_property(const std::string &property_name)
+{
+    objc_property *property = _properties[property_name];
+    if (!property) {
+        property = new objc_property(this, property_name);
+        _properties[property_name] = property;
+    }
+    
+    return property;
+}
+
+const property_map &objc_class::properties() const
+{
+    return _properties;
+}
+
+const property_map &objc_class::dynamic_properties() const
+{
+    return _properties;
+}
+
+const protocol_list &objc_class::protocols() const
+{
+    return _protocols;
+}
+
+void objc_class::add_protocol(objc_protocol *protocol)
+{
+    _protocols.push_back(protocol);
 }

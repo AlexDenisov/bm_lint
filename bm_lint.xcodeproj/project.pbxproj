@@ -16,6 +16,10 @@
 		46657F0D18AAC10000044764 /* parser_tests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F0C18AAC10000044764 /* parser_tests.cpp */; };
 		46657F1018AAC2B700044764 /* objc_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F0E18AAC2B700044764 /* objc_class.cpp */; };
 		46657F1118AAC9FF00044764 /* objc_class.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F0E18AAC2B700044764 /* objc_class.cpp */; };
+		46657F1B18AB9A0A00044764 /* objc_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F1918AB9A0A00044764 /* objc_property.cpp */; };
+		46657F1C18AB9A1400044764 /* objc_property.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F1918AB9A0A00044764 /* objc_property.cpp */; };
+		46657F2618ABDACF00044764 /* objc_protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F2418ABDACF00044764 /* objc_protocol.cpp */; };
+		46657F2718ABDACF00044764 /* objc_protocol.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46657F2418ABDACF00044764 /* objc_protocol.cpp */; };
 		4666DD7218A972FF00A06633 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4666DD7118A972FF00A06633 /* main.cpp */; };
 		4666DD7418A972FF00A06633 /* bm_lint.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4666DD7318A972FF00A06633 /* bm_lint.1 */; };
 /* End PBXBuildFile section */
@@ -80,6 +84,11 @@
 		46657F0C18AAC10000044764 /* parser_tests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser_tests.cpp; sourceTree = "<group>"; };
 		46657F0E18AAC2B700044764 /* objc_class.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objc_class.cpp; sourceTree = "<group>"; };
 		46657F0F18AAC2B700044764 /* objc_class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_class.h; sourceTree = "<group>"; };
+		46657F1918AB9A0A00044764 /* objc_property.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objc_property.cpp; sourceTree = "<group>"; };
+		46657F1A18AB9A0A00044764 /* objc_property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_property.h; sourceTree = "<group>"; };
+		46657F2418ABDACF00044764 /* objc_protocol.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objc_protocol.cpp; sourceTree = "<group>"; };
+		46657F2518ABDACF00044764 /* objc_protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objc_protocol.h; sourceTree = "<group>"; };
+		46657F2818ABDCE100044764 /* objc_definitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc_definitions.h; sourceTree = "<group>"; };
 		4666DD6E18A972FF00A06633 /* bm_lint */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = bm_lint; sourceTree = BUILT_PRODUCTS_DIR; };
 		4666DD7118A972FF00A06633 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4666DD7318A972FF00A06633 /* bm_lint.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = bm_lint.1; sourceTree = "<group>"; };
@@ -188,10 +197,15 @@
 				4666DD7318A972FF00A06633 /* bm_lint.1 */,
 				46657ED918AABD0D00044764 /* parser.h */,
 				46657ED818AABD0D00044764 /* parser.cpp */,
+				46657F2818ABDCE100044764 /* objc_definitions.h */,
 				46657EDD18AABD6C00044764 /* ast.h */,
 				46657EDC18AABD6C00044764 /* ast.cpp */,
 				46657F0F18AAC2B700044764 /* objc_class.h */,
 				46657F0E18AAC2B700044764 /* objc_class.cpp */,
+				46657F1A18AB9A0A00044764 /* objc_property.h */,
+				46657F1918AB9A0A00044764 /* objc_property.cpp */,
+				46657F2518ABDACF00044764 /* objc_protocol.h */,
+				46657F2418ABDACF00044764 /* objc_protocol.cpp */,
 			);
 			path = bm_lint;
 			sourceTree = "<group>";
@@ -279,6 +293,8 @@
 				46657EDE18AABD6C00044764 /* ast.cpp in Sources */,
 				46657EDA18AABD0D00044764 /* parser.cpp in Sources */,
 				46657F1018AAC2B700044764 /* objc_class.cpp in Sources */,
+				46657F2618ABDACF00044764 /* objc_protocol.cpp in Sources */,
+				46657F1B18AB9A0A00044764 /* objc_property.cpp in Sources */,
 				4666DD7218A972FF00A06633 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,8 +303,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46657F1C18AB9A1400044764 /* objc_property.cpp in Sources */,
 				46657F1118AAC9FF00044764 /* objc_class.cpp in Sources */,
 				46657EDF18AABD6C00044764 /* ast.cpp in Sources */,
+				46657F2718ABDACF00044764 /* objc_protocol.cpp in Sources */,
 				46657EDB18AABD0D00044764 /* parser.cpp in Sources */,
 				46657F0D18AAC10000044764 /* parser_tests.cpp in Sources */,
 				46657EEB18AAC02B00044764 /* main.cpp in Sources */,
