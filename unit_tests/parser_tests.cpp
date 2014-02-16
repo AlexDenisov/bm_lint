@@ -10,7 +10,10 @@
 
 #include "ast.h"
 #include "parser.h"
+
 #include "objc_class.h"
+#include "objc_property.h"
+#include "annotation.h"
 
 describe(parser_tests, {
     ast *sut;
@@ -68,6 +71,42 @@ describe(parser_tests, {
         
         it("should have protocols", {
             expect(test_class->protocols()).should.haveCountOf(2);
+        });
+        
+        context("property", {
+            objc_property *property;
+            
+            beforeEach({
+                property = test_class->lookup_property("red");
+            });
+            
+            it("should have name", {
+                expect(property->name()).should.equal("red");
+            });
+            
+            it("should be dynamic", {
+                expect(property->isDynamic()).should.beTrue();
+            });
+            
+            it("should have annotation", {
+                expect(property->annotations()).should.haveCountOf(1);
+            });
+            
+            context("annotation", {
+                annotation *annotation;
+                
+                beforeEach({
+#warning wait for implementation
+//                    annotation = property->annotations().at(0);
+                });
+                
+                it("should have name", {
+                    #warning wait for implementation
+//                    expect(annotation->name()).should.equal("red_property");
+                });
+                
+            });
+            
         });
         
     });

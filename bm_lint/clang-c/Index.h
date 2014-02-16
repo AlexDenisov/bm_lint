@@ -2109,7 +2109,7 @@ enum CXCursorKind {
   /* Attributes */
   CXCursor_FirstAttr                     = 400,
   /**
-   * \brief An attribute whose specific kind is not exposed via this
+   * \brief An annotation whose specific kind is not exposed via this
    * interface.
    */
   CXCursor_UnexposedAttr                 = 400,
@@ -2239,7 +2239,7 @@ CINDEX_LINKAGE unsigned clang_isExpression(enum CXCursorKind);
 CINDEX_LINKAGE unsigned clang_isStatement(enum CXCursorKind);
 
 /**
- * \brief Determine whether the given cursor kind represents an attribute.
+ * \brief Determine whether the given cursor kind represents an annotation.
  */
 CINDEX_LINKAGE unsigned clang_isAttribute(enum CXCursorKind);
 
@@ -3110,14 +3110,14 @@ CINDEX_LINKAGE CXCursor clang_getOverloadedDecl(CXCursor cursor,
  */
   
 /**
- * \defgroup CINDEX_ATTRIBUTES Information for attributes
+ * \defgroup CINDEX_ATTRIBUTES Information for annotations
  *
  * @{
  */
 
 
 /**
- * \brief For cursors representing an iboutletcollection attribute,
+ * \brief For cursors representing an iboutletcollection annotation,
  *  this function returns the collection element type.
  *
  */
@@ -3429,7 +3429,7 @@ CINDEX_LINKAGE int clang_Cursor_isDynamicCall(CXCursor C);
 CINDEX_LINKAGE CXType clang_Cursor_getReceiverType(CXCursor C);
 
 /**
- * \brief Property attributes for a \c CXCursor_ObjCPropertyDecl.
+ * \brief Property annotations for a \c CXCursor_ObjCPropertyDecl.
  */
 typedef enum {
   CXObjCPropertyAttr_noattr    = 0x00,
@@ -3449,7 +3449,7 @@ typedef enum {
 
 /**
  * \brief Given a cursor that represents a property declaration, return the
- * associated property attributes. The bits are formed from
+ * associated property annotations. The bits are formed from
  * \c CXObjCPropertyAttrKind.
  *
  * \param reserved Reserved for future use, pass 0.
@@ -3623,7 +3623,7 @@ enum CXCommentKind {
   CXComment_InlineCommand = 2,
 
   /**
-   * \brief HTML start tag with attributes (name-value pairs).  Considered
+   * \brief HTML start tag with annotations (name-value pairs).  Considered
    * inline content.
    *
    * For example:
@@ -3862,16 +3862,16 @@ unsigned clang_HTMLStartTagComment_isSelfClosing(CXComment Comment);
 /**
  * \param Comment a \c CXComment_HTMLStartTag AST node.
  *
- * \returns number of attributes (name-value pairs) attached to the start tag.
+ * \returns number of annotations (name-value pairs) attached to the start tag.
  */
 CINDEX_LINKAGE unsigned clang_HTMLStartTag_getNumAttrs(CXComment Comment);
 
 /**
  * \param Comment a \c CXComment_HTMLStartTag AST node.
  *
- * \param AttrIdx attribute index (zero-based).
+ * \param AttrIdx annotation index (zero-based).
  *
- * \returns name of the specified attribute.
+ * \returns name of the specified annotation.
  */
 CINDEX_LINKAGE
 CXString clang_HTMLStartTag_getAttrName(CXComment Comment, unsigned AttrIdx);
@@ -3879,9 +3879,9 @@ CXString clang_HTMLStartTag_getAttrName(CXComment Comment, unsigned AttrIdx);
 /**
  * \param Comment a \c CXComment_HTMLStartTag AST node.
  *
- * \param AttrIdx attribute index (zero-based).
+ * \param AttrIdx annotation index (zero-based).
  *
- * \returns value of the specified attribute.
+ * \returns value of the specified annotation.
  */
 CINDEX_LINKAGE
 CXString clang_HTMLStartTag_getAttrValue(CXComment Comment, unsigned AttrIdx);

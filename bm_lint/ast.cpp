@@ -9,6 +9,7 @@
 #include "ast.h"
 #include "objc_class.h"
 #include "objc_protocol.h"
+#include "annotation.h"
 
 ast::~ast()
 {
@@ -54,6 +55,17 @@ objc_protocol *ast::lookup_protocol(const std::string &protocol_name)
     }
     
     return protocol;
+}
+
+annotation *ast::lookup_annotation(const std::string &annotation_name)
+{
+    annotation *ann = _attribute_map[annotation_name];
+    if (!ann) {
+        ann = new annotation(annotation_name);
+        _attribute_map[annotation_name] = ann;
+    }
+    
+    return ann;
 }
 
 const class_list &ast::objc_classes() const

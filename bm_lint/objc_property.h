@@ -18,7 +18,15 @@ public:
     const std::string &name() const;
     objc_class *container_class() const;
     
+    void setDynamic(bool dynamic);
+    bool isDynamic() const;
+    
+    void addAnnotation(annotation *annotation);
+    const annotation_list &annotations() const;
+    
 private:
     std::string _name;
+    bool _dynamic;
     objc_class *_class;
+    annotation_list _annotations;
 };

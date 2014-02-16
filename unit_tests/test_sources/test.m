@@ -21,7 +21,7 @@ OBJC_ROOT_CLASS
 @interface test : root
     <test_protocol>
 
-@property (nonatomic, strong) root *red;
+@property (nonatomic, strong) __attribute__((annotation("red_property"))) root *red;
 @property (nonatomic, strong) root *green;
 @property (nonatomic, strong) root *blue;
 
