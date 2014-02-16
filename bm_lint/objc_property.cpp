@@ -13,12 +13,12 @@ objc_property::objc_property(objc_class *objc_class, const std::string &name)
 {
 }
 
-void objc_property::setDynamic(bool dynamic)
+void objc_property::set_dynamic(bool dynamic)
 {
     _dynamic = dynamic;
 }
 
-bool objc_property::isDynamic() const
+bool objc_property::is_dynamic() const
 {
     return _dynamic;
 }
@@ -28,7 +28,7 @@ const std::string &objc_property::name() const
     return _name;
 }
 
-void objc_property::addAnnotation(annotation *annotation)
+void objc_property::add_annotation(annotation *annotation)
 {
     _annotations.push_back(annotation);
 }

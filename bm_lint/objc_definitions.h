@@ -12,6 +12,7 @@
 #include <map>
 #include <vector>
 
+class ast;
 class objc_class;
 class objc_property;
 class objc_protocol;

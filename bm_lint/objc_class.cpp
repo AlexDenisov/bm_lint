@@ -61,11 +61,6 @@ const property_list &objc_class::properties() const
     return _properties;
 }
 
-const property_list &objc_class::dynamic_properties() const
-{
-    return _properties;
-}
-
 const protocol_list &objc_class::protocols() const
 {
     return _protocols;

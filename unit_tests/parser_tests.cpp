@@ -56,17 +56,11 @@ describe(parser_tests, {
         });
         
         it("should have right superclass", {
-#warning waiting for base class parsing implementation
-            expect(false).should.beTrue();
-            // expect(test_class->superclass()->name()).should.equal("root");
+            expect(test_class->superclass()->name()).should.equal("root");
         });
         
         it("should have properties", {
             expect(test_class->properties()).should.haveCountOf(3);
-        });
-        
-        it("should have dynamic properties", {
-            expect(test_class->dynamic_properties()).should.haveCountOf(1);
         });
         
         it("should have protocols", {
@@ -85,7 +79,7 @@ describe(parser_tests, {
             });
             
             it("should be dynamic", {
-                expect(property->isDynamic()).should.beTrue();
+                expect(property->is_dynamic()).should.beTrue();
             });
             
             it("should have annotation", {
@@ -96,13 +90,11 @@ describe(parser_tests, {
                 annotation *annotation;
                 
                 beforeEach({
-#warning wait for implementation
-//                    annotation = property->annotations().at(0);
+                    annotation = property->annotations().at(0);
                 });
                 
                 it("should have name", {
-                    #warning wait for implementation
-//                    expect(annotation->name()).should.equal("red_property");
+                    expect(annotation->name()).should.equal("red_property");
                 });
                 
             });

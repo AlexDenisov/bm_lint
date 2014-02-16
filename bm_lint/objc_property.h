@@ -18,10 +18,10 @@ public:
     const std::string &name() const;
     objc_class *container_class() const;
     
-    void setDynamic(bool dynamic);
-    bool isDynamic() const;
+    void set_dynamic(bool dynamic);
+    bool is_dynamic() const;
     
-    void addAnnotation(annotation *annotation);
+    void add_annotation(annotation *annotation);
     const annotation_list &annotations() const;
     
 private:

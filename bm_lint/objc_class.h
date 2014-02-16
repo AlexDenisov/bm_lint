@@ -25,7 +25,6 @@ public:
     // properties
     objc_property *lookup_property(const std::string &property_name);
     const property_list &properties() const;
-    const property_list &dynamic_properties() const;
     
     // protocols
     const protocol_list &protocols() const;

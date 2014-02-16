@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Railsware. All rights reserved.
 //
 
-OBJC_ROOT_CLASS
+__attribute__((objc_root_class))
 @interface root
 @end
 @implementation root
@@ -21,7 +21,7 @@ OBJC_ROOT_CLASS
 @interface test : root
     <test_protocol>
 
-@property (nonatomic, strong) __attribute__((annotation("red_property"))) root *red;
+@property (nonatomic, strong) __attribute__((annotate("red_property"))) root *red;
 @property (nonatomic, strong) root *green;
 @property (nonatomic, strong) root *blue;
 
