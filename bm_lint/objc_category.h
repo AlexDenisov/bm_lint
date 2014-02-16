@@ -1,5 +1,5 @@
 //
-//  annotation.h
+//  objc_category.h
 //  bm_lint
 //
 //  Created by AlexDenisov on 2/16/14.
@@ -10,11 +10,10 @@
 
 #include "definitions.h"
 
-class annotation
+class objc_category
 {
 public:
-    annotation(const std::string &name);
-    
+    objc_category(const std::string &name);
     const std::string &name() const;
     
 private:

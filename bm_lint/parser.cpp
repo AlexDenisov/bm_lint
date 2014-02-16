@@ -11,10 +11,25 @@
 
 #include "objc_class.h"
 #include "objc_property.h"
+#include "objc_protocol.h"
+#include "objc_category.h"
 
 #include "Index.h"
 
 #include <iostream>
+
+// TODO: free memory and drop extra collections
+
+static inline void _debug(CXCursor &cursor)
+{
+    CXString name = clang_getCursorSpelling(cursor);
+    CXString cursorName = clang_getCursorKindSpelling(clang_getCursorKind(cursor));
+    
+    std::cout << clang_getCString(cursorName) << "\t" << clang_getCString(name) << std::endl;
+    
+    clang_disposeString(name);
+    clang_disposeString(cursorName);
+}
 
 static inline const char *cursor_name(CXCursor &cursor)
 {
@@ -24,8 +39,11 @@ static inline const char *cursor_name(CXCursor &cursor)
     return name;
 }
 
-parser::parser(ast *ast)
-: _ast(ast)
+parser::parser(ast *ast):
+    _ast(ast),
+    _current_category(NULL),
+    _current_class(NULL),
+    _current_property(NULL)
 {
 }
 
@@ -37,14 +55,22 @@ void parser::parse(const std::string &filename)
     
     clang_visitChildrenWithBlock(clang_getTranslationUnitCursor(tu), ^(CXCursor cursor, CXCursor parent) {
         
-        CXCursorKind cursorKind = clang_getCursorKind(cursor);
+        CXCursorKind cursor_kind = clang_getCursorKind(cursor);
         const char *name = cursor_name(cursor);
         
-        switch (cursorKind) {
+        switch (cursor_kind) {
                 
             case CXCursor_ObjCInterfaceDecl:
             case CXCursor_ObjCImplementationDecl:
                 handle_objc_class(name);
+                break;
+                
+            case CXCursor_ObjCClassRef:
+                handle_objc_class_ref(name);
+                break;
+                
+            case CXCursor_ObjCCategoryDecl:
+                handle_objc_category(name);
                 break;
                 
             case CXCursor_ObjCSuperClassRef:
@@ -62,32 +88,16 @@ void parser::parse(const std::string &filename)
             case CXCursor_ObjCDynamicDecl:
                 handle_objc_dynamic(name);
                 break;
-                
-                //            case CXCursor_ObjCDynamicDecl:
-                //                handleDynamic(cursor);
-                //                break;
-                //            case CXCursor_ObjCSynthesizeDecl:
-                //                handleSynthesize(cursor);
-                //                break;
-                //            case CXCursor_AnnotateAttr:
-                //                handleAnnotation(cursor);
-                //                break;
-                //            case CXCursor_ObjCClassMethodDecl:
-                //                handleMethod(cursor);
-                //                break;
-                //
+
+            case CXCursor_ObjCProtocolRef:
+                handle_objc_protocol(name);
+                break;
             default:
             {
-                CXString name = clang_getCursorSpelling(cursor);
-                CXString cursorName = clang_getCursorKindSpelling(clang_getCursorKind(cursor));
-                
-                std::cout << clang_getCString(cursorName) << "\t" << clang_getCString(name) << std::endl;
-                
-                clang_disposeString(name);
-                clang_disposeString(cursorName);
+//                _debug(cursor);
             }break;
         }
-        
+
         return CXChildVisit_Recurse;
     });
     
@@ -117,6 +127,32 @@ void parser::handle_objc_dynamic(const std::string &name)
 {
     objc_property *property = _current_class->lookup_property(name);
     property->set_dynamic(true);
+}
+
+void parser::handle_objc_protocol(const std::string &name)
+{
+    objc_protocol *protocol = _ast->lookup_protocol(name);
+    _current_class->add_protocol(protocol);
+    protocol->add_class(_current_class);
+}
+
+void parser::handle_objc_category(const std::string &name)
+{
+    _current_category = _ast->lookup_category(name);
+}
+
+void parser::handle_objc_class_ref(const std::string &name)
+{
+
+    if (!_current_category) {
+        return;
+    }
+
+    if (_current_category->name() == "") {
+        handle_objc_class(name);
+    }
+    
+    _current_category = NULL;
 }
 
 void parser::handle_annotation(const std::string &name)

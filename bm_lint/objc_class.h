@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "objc_definitions.h"
+#include "definitions.h"
 
 class objc_class
 {
@@ -27,12 +27,12 @@ public:
     const property_list &properties() const;
     
     // protocols
-    const protocol_list &protocols() const;
+    const protocol_set &protocols() const;
     void add_protocol(objc_protocol *protocol);
 private:
     std::string _name;
     objc_class *_superclass;
     property_map _property_map;
     property_list _properties;
-    protocol_list _protocols;
+    protocol_set _protocols;
 };

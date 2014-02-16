@@ -9,6 +9,7 @@
 #include "ast.h"
 #include "objc_class.h"
 #include "objc_protocol.h"
+#include "objc_category.h"
 #include "annotation.h"
 
 ast::~ast()
@@ -51,10 +52,21 @@ objc_protocol *ast::lookup_protocol(const std::string &protocol_name)
     if (!protocol) {
         protocol = new objc_protocol(protocol_name);
         _protocol_map[protocol_name] = protocol;
-        _protocols.push_back(protocol);
+        _protocols.insert(protocol);
     }
     
     return protocol;
+}
+
+objc_category *ast::lookup_category(const std::string &category_name)
+{
+    objc_category *category = _category_map[category_name];
+    if (!category) {
+        category = new objc_category(category_name);
+        _category_map[category_name] = category;
+    }
+    
+    return category;
 }
 
 annotation *ast::lookup_annotation(const std::string &annotation_name)
@@ -73,7 +85,7 @@ const class_list &ast::objc_classes() const
     return _classes;
 }
 
-const protocol_list &ast::objc_protocols() const
+const protocol_set &ast::objc_protocols() const
 {
     return _protocols;
 }

@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "objc_definitions.h"
+#include "definitions.h"
 
 class parser
 {
@@ -21,6 +21,9 @@ public:
     void handle_objc_property(const std::string &name);
     void handle_objc_dynamic(const std::string &name);
     void handle_annotation(const std::string &name);
+    void handle_objc_protocol(const std::string &name);
+    void handle_objc_category(const std::string &name);
+    void handle_objc_class_ref(const std::string &name);
     
 private:
     ast *_ast;
@@ -28,4 +31,5 @@ private:
     // bethink about context
     objc_class *_current_class;
     objc_property *_current_property;
+    objc_category *_current_category;
 };

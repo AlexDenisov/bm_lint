@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "objc_definitions.h"
+#include "definitions.h"
 
 class objc_protocol
 {

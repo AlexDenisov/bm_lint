@@ -61,12 +61,12 @@ const property_list &objc_class::properties() const
     return _properties;
 }
 
-const protocol_list &objc_class::protocols() const
+const protocol_set &objc_class::protocols() const
 {
     return _protocols;
 }
 
 void objc_class::add_protocol(objc_protocol *protocol)
 {
-    _protocols.push_back(protocol);
+    _protocols.insert(protocol);
 }
